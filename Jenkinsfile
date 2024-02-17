@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Clone source code') {
+        stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/lukeNonyane1/tweet-trend-new-devops-workshop.git'
+                sh 'mvn clean deploy'
             }
         }
     }
