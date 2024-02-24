@@ -7,11 +7,11 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
-        GIT_BRANCH = ""
-        GIT_COMMIT = ""
-        GIT_PREVIOUS_COMMIT = ""
-        GIT_PREVIOUS_SUCCESSFUL_COMMIT = ""
-        GIT_URL = ""
+        // GIT_BRANCH = ""
+        // GIT_COMMIT = ""
+        // GIT_PREVIOUS_COMMIT = ""
+        // GIT_PREVIOUS_SUCCESSFUL_COMMIT = ""
+        // GIT_URL = ""
     }
     stages {
         stage('Build') {
