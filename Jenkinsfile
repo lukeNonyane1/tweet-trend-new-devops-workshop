@@ -1,4 +1,6 @@
 def registry = 'https://valaxy2114.jfrog.io'
+def imageName = 'valaxy2114.jfrog.io/valaxy-docker-local/demo-workshop'
+def version   = '2.1.2'
 pipeline {
     agent {
         node {
@@ -7,11 +9,11 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
-        // GIT_BRANCH = ""
-        // GIT_COMMIT = ""
-        // GIT_PREVIOUS_COMMIT = ""
-        // GIT_PREVIOUS_SUCCESSFUL_COMMIT = ""
-        // GIT_URL = ""
+    // GIT_BRANCH = ""
+    // GIT_COMMIT = ""
+    // GIT_PREVIOUS_COMMIT = ""
+    // GIT_PREVIOUS_SUCCESSFUL_COMMIT = ""
+    // GIT_URL = ""
     }
     stages {
         stage('Build') {
@@ -106,5 +108,26 @@ pipeline {
         //         echo '<--------------- Jar Publish Completed --------------->'
         //     }
         // }
+        stage('Docker Build') {
+            steps {
+                script {
+                    echo '<--------------- Docker Build Started --------------->'
+                    app = docker.build(imageName + ':' + version)
+                    echo '<--------------- Docker Build Completed --------------->'
+                }
+            }
+        }
+        stage('Docker Publish') {
+            steps {
+                script {
+                    echo '<--------------- Docker Publish Started --------------->'
+                    /* groovylint-disable-next-line NestedBlockDepth */
+                    docker.withRegistry(registry, 'artifactory') {
+                        app.push()
+                    }
+                    echo '<--------------- Docker Publish Completed --------------->'
+                }
+            }
+        }
     }
 }
