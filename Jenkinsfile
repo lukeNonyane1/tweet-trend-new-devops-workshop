@@ -64,6 +64,7 @@ pipeline {
                 //     server.publishBuildInfo(buildInfo)
                 //     echo '<--------------- Jar Publish Ended --------------->'
                 // }
+                echo '<--------------- Jar Publish Started --------------->'
                 rtServer(
                     id: 'artifactory-instance',
                     url: 'https://valaxy2114.jfrog.io',
@@ -98,6 +99,7 @@ pipeline {
                     // Optional - Only if this build is associated with a project in Artifactory, set the project key as follows.
                     // project: 'my-project-key'
                 )
+                echo '<--------------- Jar Publish Completed --------------->'
             }
         }
     }
