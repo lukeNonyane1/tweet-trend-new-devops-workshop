@@ -23,9 +23,9 @@ pipeline {
         }
         stage('test') {
             steps {
-                echo '------ unit test started ------'
+                echo '<------ unit test started ------>'
                 sh 'mvn surefire-report:report'
-                echo '------ unit test completed ------'
+                echo '<------ unit test completed ------>'
             }
         }
         stage('SonarQube analysis') {
@@ -72,7 +72,7 @@ pipeline {
                 echo '<--------------- Jar Publish Started --------------->'
                 rtServer(
                     id: 'artifactory-instance',
-                    url: 'https://valaxy2114.jfrog.io',
+                    url: 'https://valaxy2114.jfrog.io/artifactory',
                         // If you're using username and password:
                         // username: 'user',
                         // password: 'password',
