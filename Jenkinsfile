@@ -7,6 +7,11 @@ pipeline {
     }
     environment {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
+        GIT_BRANCH = ""
+        GIT_COMMIT = ""
+        GIT_PREVIOUS_COMMIT = ""
+        GIT_PREVIOUS_SUCCESSFUL_COMMIT = ""
+        GIT_URL = ""
     }
     stages {
         stage('Build') {
@@ -89,7 +94,6 @@ pipeline {
                             }
                         ]
                     }'''
-
                     // Optional - Associate the uploaded files with the following custom build name and build number,
                     // as build artifacts.
                     // If not set, the files will be associated with the default build name and build number (i.e the
