@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: valaxy-rtp
+  name: valaxy-rtp
+  namespace: valaxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: valaxy-rtp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: valaxy-rtp
+    spec:
+      imagePullSecrets:
+      - name: jfrog-cred
+      containers:
+      - image: valaxy2114.jfrog.io/valaxy-docker-local/demo-workshop:2.1.2
+        name: valaxy-rtp
+        ports:
+        - containerPort: 8000
+        env:
+        - name: CONSUMER_KEY
+          value: "G6lmKhsi0V9TvXt6oKTfjRBCr"
+        - name: CONSUMER_SECRET
+          value: "bEyDk8X0p8SQd4376eoNV4nH8To22sHcJOoFt0ZqOKS37hhI4q"
+        - name: ACCESS_TOKEN
+          value: "9703354-52rXHD6EeOQeYyhtNz1w8UVOgbcLcgOo4O7MB6WV3"
+        - name: ACCESS_TOKEN_SECRET
+          value: "zBThlZDEp8qnu7NwwdHNth8eg3Rf9zqbvUEFUTaZtN2SF"
+        resources: {}
+status: {}
