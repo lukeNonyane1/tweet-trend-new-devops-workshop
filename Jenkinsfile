@@ -129,5 +129,16 @@ pipeline {
                 }
             }
         }
+        stage('Kubectl Deploy') {
+            steps {
+                script {
+                    echo '<--------------- Kubectl apply Started --------------->'
+                    script {
+                        sh './deploy.sh'
+                    }
+                    echo '<--------------- Kubectl apply Completed --------------->'
+                }
+            }
+        }
     }
 }
