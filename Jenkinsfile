@@ -129,14 +129,25 @@ pipeline {
                 }
             }
         }
-        stage('Kubectl Deploy') {
+        // stage('Kubectl Deploy') {
+        //     steps {
+        //         script {
+        //             echo '<--------------- Kubectl apply Started --------------->'
+        //             script {
+        //                 sh './deploy.sh'
+        //             }
+        //             echo '<--------------- Kubectl apply Completed --------------->'
+        //         }
+        //     }
+        // }
+        stage('Helm Deploy') {
             steps {
                 script {
-                    echo '<--------------- Kubectl apply Started --------------->'
+                    echo '<--------------- Helm install Started --------------->'
                     script {
-                        sh './deploy.sh'
+                        sh 'helm install ttrend ttrend-0.1.0.tgz'
                     }
-                    echo '<--------------- Kubectl apply Completed --------------->'
+                    echo '<--------------- Helm install Completed --------------->'
                 }
             }
         }
